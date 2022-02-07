@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+
+public class ValidWordChecker : MonoBehaviour
+{
+    private static string[] validGuesses;
+    private string filePath, fileName;
+    void Awake()
+    {
+        fileName = "ValidWords.txt";
+        filePath = Application.dataPath + "/" + fileName;
+        validGuesses = File.ReadAllLines(filePath);
+    }
+
+    // Update is called once per frame
+    public static bool IsValidGuess(string guess)
+    {
+        int left = 0, right = validGuesses.Length - 1;
+        while (left <= right)
+        {
+            int midPoint = left + (right - left) / 2;
+            string word = validGuesses[midPoint];
+            int compare = guess.CompareTo(validGuesses[midPoint]);
+            if (compare == 0) return true;
+            else if (compare > 0) left = midPoint + 1;
+            else right = midPoint - 1;
+        }
+        return false;
+    }
+
+}
