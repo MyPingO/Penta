@@ -22,6 +22,8 @@ public class Guess : MonoBehaviour
     [SerializeField]
     private RandomWordPicker wordPicker;
     [SerializeField]
+    private DifficultyManager difficultyManager;
+    [SerializeField]
     private string randomWord;
 
     [SerializeField]
@@ -59,7 +61,7 @@ public class Guess : MonoBehaviour
         //every time you enter in a guess
         if (Input.GetKeyDown(KeyCode.Return) && letters.Count == 5 && guessNumber < 6)
         {
-            if (DifficultyManager.GuessChecker(guesses[guessNumber], randomWord, letterCountInGuess))//else / else if where?
+            if (difficultyManager.GuessChecker(guesses[guessNumber], randomWord, letterCountInGuess))//else / else if where?
             {
                 //if player guessed the word
                 if (AreAllTextSameColor(guesses[guessNumber], Color.green))
@@ -72,7 +74,7 @@ public class Guess : MonoBehaviour
                             guesses[i][j].text = "";
                             guesses[i][j].color = Color.black;
                         }
-                    guessNumber = 0; index = 0; letters.Clear(); letterCountInGuess.Clear(); randomWord = wordPicker.GetRandomWord(); DifficultyManager.greenLetterPositions.Clear(); DifficultyManager.yellowLetters = "";
+                    guessNumber = 0; index = 0; letters.Clear(); letterCountInGuess.Clear(); randomWord = wordPicker.GetRandomWord(); difficultyManager.greenLetterPositions.Clear(); DifficultyManager.yellowLetters = "";
                     FillDictionaryWithWord(randomWord);
                     SceneManager.LoadScene("Congrats");
 

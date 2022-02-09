@@ -5,20 +5,27 @@ using TMPro;
 
 public class DifficultyManager : MonoBehaviour
 {
-    public static string difficulty = "EASY";
-    public static Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
+    [SerializeField]
+    ValidWordChecker validWordChecker;
+    private Animator animator;
+    private TMP_Text warningMessage;
+    public GameObject warningMessageGO;
+    public static string difficulty = "HARD";
+    public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
     public static string yellowLetters = "";
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        warningMessage = warningMessageGO.GetComponent<TMP_Text>();
+        warningMessage.color = new Color32(255, 116, 116, 255);
+        animator = warningMessageGO.GetComponent<Animator>();
     }
     // Update is called once per frame
-    public static void SetDifficulty(string difficulty)
+    public void SetDifficulty(string difficulty)
     {
         DifficultyManager.difficulty = difficulty;
     }
-    public static bool GuessChecker(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
+    public bool GuessChecker(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
     {
         if (difficulty == "EASY")
         {
@@ -30,10 +37,11 @@ public class DifficultyManager : MonoBehaviour
             //make a string out of the TMP_Text array and if it's a valid guess, reveal the characters
             string guessWord = "";
             for (int i = 0; i < guess.Length; i++) guessWord += guess[i].text;
-            if (ValidWordChecker.IsValidGuess(guessWord.ToLower())) RevealLetters(guess, randomWord, letterCountInGuess);
+            if (validWordChecker.IsValidGuess(guessWord.ToLower())) RevealLetters(guess, randomWord, letterCountInGuess);
             else
             {
-                Debug.Log("Invalid Word!"); //create function to say guess is an invalid word
+                InvalidGuess("Invalid Word!");
+                Debug.Log("Invalid Word!");
                 return false;            
             }
             return true;
@@ -44,20 +52,20 @@ public class DifficultyManager : MonoBehaviour
             string guessWord = "";
             for (int i = 0; i < guess.Length; i++) guessWord += guess[i].text;
             //first check if the guess is a valid word
-            if (ValidWordChecker.IsValidGuess(guessWord.ToLower()))
+            if (validWordChecker.IsValidGuess(guessWord.ToLower()))
             {
                 //check to make sure all hints are used in the guess, first check yellow characters, then green ones
                 for (int i = 0; i < yellowLetters.Length; i++)
                     if (guessWord.Contains(yellowLetters[i]) == false)
                     {
-                        Debug.Log("Did not use all hints! " + yellowLetters[i] + " is not in " + guessWord); //TODO Create a function to say you need to use all hints cause of hard mode
+                        InvalidGuess("Did Not Use All Hints!");
                         return false;
                     }
                 //'key' represents an index
                 foreach (int key in greenLetterPositions.Keys)
                     if (guessWord[key] != greenLetterPositions[key])
                     {
-                        Debug.Log("Did not use all hints! " + guessWord[key] + " is not " + greenLetterPositions[key]); //TODO Create a function to say you need to use all hints cause of hard mode
+                        InvalidGuess("Did Not Use All Hints!");
                         return false;
                     }
                 //if all checks are passed then reveal letters
@@ -65,14 +73,14 @@ public class DifficultyManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Invalid Word!"); //create function to say guess is an invalid word
+                InvalidGuess("Invalid Word!");
                 return false;
             }
             return true;
         }
     }
     //function for showing red, green, or yellow letters for a guess
-    private static void RevealLetters(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
+    private void RevealLetters(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
     {
         //make a string out of the TMP_Text array and use that for checks
         string guessWord = "";
@@ -106,5 +114,21 @@ public class DifficultyManager : MonoBehaviour
             }
         }
     }
+    private void InvalidGuess(string message)
+    {
+        warningMessage.text = message;
+        StartCoroutine("playWarningAnimation");
+    }
+    IEnumerator playWarningAnimation()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("warningMessage"))
+        {
+            animator.SetBool("TriggerWarning", true);
+            yield return new WaitForSeconds(4);
+            warningMessage.text = "";
+            animator.SetBool("TriggerWarning", false); 
+        }
+    }
+
 }
 

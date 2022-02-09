@@ -6,8 +6,8 @@ using System.IO;
 public class RandomWordPicker : MonoBehaviour
 {
     private string[] words;
-    public static string currentWord;
     private string filePath, fileName;
+    public static string currentWord;
     void Awake()
     {
 
