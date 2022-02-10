@@ -124,7 +124,7 @@ public class DifficultyManager : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("warningMessage"))
         {
             animator.SetBool("TriggerWarning", true);
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(2.7f);
             warningMessage.text = "";
             animator.SetBool("TriggerWarning", false); 
         }

@@ -51,17 +51,49 @@ public class Guess : MonoBehaviour
         //get input from user and make sure its a letter to add to the guess
         foreach (char c in Input.inputString)
         {
-            if (char.IsLetter(c) && index < 5 && guessNumber < 6)
-            {
-                letters.Add(char.ToUpper(c));
-                guesses[guessNumber][index].text = c.ToString().ToUpper();
-                index++;
-            }
+                AddLetter(c.ToString().ToUpper());
         }
         //every time you enter in a guess
-        if (Input.GetKeyDown(KeyCode.Return) && letters.Count == 5 && guessNumber < 6)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (difficultyManager.GuessChecker(guesses[guessNumber], randomWord, letterCountInGuess))//else / else if where?
+            ValidateGuess();
+        }
+        //delete character
+        else if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            DeleteLastLetter();
+        }
+
+    }
+
+    bool AreAllTextSameColor(TMP_Text[] textArray, Color color)
+    {
+        for (int i = 0; i < textArray.Length; i++) if (textArray[i].color != color) return false;
+        return true;
+    }
+    void FillDictionaryWithWord(string word)
+    {
+        foreach (char c in word)
+        {
+            char upperC = char.ToUpper(c);
+            if (letterCountInGuess.ContainsKey(upperC)) letterCountInGuess[upperC]++;
+            else letterCountInGuess.Add(char.ToUpper(upperC), 1);
+        }
+    }
+    public void AddLetter(string c)
+    {
+        if (char.IsLetter(c[0]) && index < 5 && guessNumber < 6)
+        {
+            letters.Add(c[0]);
+            guesses[guessNumber][index].text = c;
+            index++;
+        }
+    }
+    public void ValidateGuess()
+    {
+        if (letters.Count == 5 && guessNumber < 6)
+        {
+            if (difficultyManager.GuessChecker(guesses[guessNumber], randomWord, letterCountInGuess))
             {
                 //if player guessed the word
                 if (AreAllTextSameColor(guesses[guessNumber], Color.green))
@@ -97,29 +129,14 @@ public class Guess : MonoBehaviour
                 }
             }
         }
-        //delete character
-        else if (Input.GetKeyDown(KeyCode.Backspace) && letters.Count > 0)
+    }
+    public void DeleteLastLetter()
+    {
+        if (letters.Count > 0)
         {
             guesses[guessNumber][index - 1].text = "";
             index--;
             letters.RemoveAt(letters.Count - 1);
-        }
-
-    }
-
-    bool AreAllTextSameColor(TMP_Text[] textArray, Color color)
-    {
-        for (int i = 0; i < textArray.Length; i++) if (textArray[i].color != color) return false;
-        return true;
-    }
-
-    void FillDictionaryWithWord(string word)
-    {
-        foreach (char c in word)
-        {
-            char upperC = char.ToUpper(c);
-            if (letterCountInGuess.ContainsKey(upperC)) letterCountInGuess[upperC]++;
-            else letterCountInGuess.Add(char.ToUpper(upperC), 1);
         }
     }
 }
