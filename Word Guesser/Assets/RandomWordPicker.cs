@@ -10,7 +10,6 @@ public class RandomWordPicker : MonoBehaviour
     public static string currentWord;
     void Awake()
     {
-
         fileName = "Words.txt";
         filePath = Application.dataPath + "/" + fileName;
         words = File.ReadAllLines(filePath);

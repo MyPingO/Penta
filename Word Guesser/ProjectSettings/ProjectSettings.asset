@@ -893,11 +893,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: c5c92efe-8f2f-4292-ad70-d412fa02c056
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Word Guesser
+  organizationId: myping0yt
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   playerDataPath: 

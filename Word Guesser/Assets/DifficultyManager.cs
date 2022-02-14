@@ -9,8 +9,10 @@ public class DifficultyManager : MonoBehaviour
     ValidWordChecker validWordChecker;
     private Animator animator;
     private TMP_Text warningMessage;
+    public TMP_Text[] keyBoardLetters = new TMP_Text[26];
     public GameObject warningMessageGO;
-    public static string difficulty = "HARD";
+    public HintManager hintManager;
+    public static string difficulty = "EASY";
     public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
     public static string yellowLetters = "";
 
@@ -40,7 +42,7 @@ public class DifficultyManager : MonoBehaviour
             if (validWordChecker.IsValidGuess(guessWord.ToLower())) RevealLetters(guess, randomWord, letterCountInGuess);
             else
             {
-                InvalidGuess("Invalid Word!");
+                InvalidAction("Invalid Word!");
                 Debug.Log("Invalid Word!");
                 return false;            
             }
@@ -58,14 +60,14 @@ public class DifficultyManager : MonoBehaviour
                 for (int i = 0; i < yellowLetters.Length; i++)
                     if (guessWord.Contains(yellowLetters[i]) == false)
                     {
-                        InvalidGuess("Did Not Use All Hints!");
+                        InvalidAction("Did Not Use All Hints!");
                         return false;
                     }
                 //'key' represents an index
                 foreach (int key in greenLetterPositions.Keys)
                     if (guessWord[key] != greenLetterPositions[key])
                     {
-                        InvalidGuess("Did Not Use All Hints!");
+                        InvalidAction("Did Not Use All Hints!");
                         return false;
                     }
                 //if all checks are passed then reveal letters
@@ -73,7 +75,7 @@ public class DifficultyManager : MonoBehaviour
             }
             else
             {
-                InvalidGuess("Invalid Word!");
+                InvalidAction("Invalid Word!");
                 return false;
             }
             return true;
@@ -91,8 +93,9 @@ public class DifficultyManager : MonoBehaviour
             if (guessWord[i] == char.ToUpper(randomWord[i]))
             {
                 guess[i].color = Color.green;
+                hintManager.RevealGreenLetter(i, guess[i].text[0]);
                 letterCountInGuess[guessWord[i]]--;
-                if (greenLetterPositions.ContainsKey(i) == false) greenLetterPositions.Add(i, guessWord[i]);
+                if (!greenLetterPositions.ContainsKey(i)) greenLetterPositions.Add(i, guessWord[i]);
             }
         }
         for (int i = 0; i < guess.Length; i++)
@@ -114,12 +117,12 @@ public class DifficultyManager : MonoBehaviour
             }
         }
     }
-    private void InvalidGuess(string message)
+    public void InvalidAction(string message)
     {
         warningMessage.text = message;
-        StartCoroutine("playWarningAnimation");
+        StartCoroutine("PlayWarningAnimation");
     }
-    IEnumerator playWarningAnimation()
+    IEnumerator PlayWarningAnimation()
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("warningMessage"))
         {
@@ -129,6 +132,7 @@ public class DifficultyManager : MonoBehaviour
             animator.SetBool("TriggerWarning", false); 
         }
     }
-
+    public void setGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { this.greenLetterPositions = greenLetterPositions; }
+    public Dictionary<int, char> getGreenLetterPositions() { return greenLetterPositions; }
 }
 

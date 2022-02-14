@@ -1,3 +1,8 @@
-Do something if guess isnt valid word
-Hard mode
+Use Hints + Hard Mode Require Hints
 Buy hints
+Display Current Streak
+Display Current Hints
+Add Music
+Color the Keyboard
+
+//Was implementing hints last. Need to fix adding hint by updating green letter dictionary probably.

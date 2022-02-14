@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class Guess : MonoBehaviour
 
 {
+    public Streak streak;
+
     public TMP_Text[] firstGuess = new TMP_Text[5];
     public TMP_Text[] secondGuess = new TMP_Text[5];
     public TMP_Text[] thirdGuess = new TMP_Text[5];
@@ -19,8 +21,7 @@ public class Guess : MonoBehaviour
     private int guessNumber = 0;
     private int index = 0;
 
-    [SerializeField]
-    private RandomWordPicker wordPicker;
+    public RandomWordPicker wordPicker;
     [SerializeField]
     private DifficultyManager difficultyManager;
     [SerializeField]
@@ -99,7 +100,7 @@ public class Guess : MonoBehaviour
                 if (AreAllTextSameColor(guesses[guessNumber], Color.green))
                 {
                     //reset text tiles and other stats
-                    Streak.AddStreak();
+                    streak.AddStreak();
                     for (int i = 0; i < guesses.Length; i++)
                         for (int j = 0; j < guesses[i].Length; j++)
                         {
@@ -115,7 +116,7 @@ public class Guess : MonoBehaviour
                 else if (guessNumber == 5 && AreAllTextSameColor(guesses[guessNumber], Color.green) == false)
                 {
                     RandomWordPicker.currentWord = randomWord;
-                    Streak.ResetStreak();
+                    streak.ResetStreak();
                     SceneManager.LoadScene("GameOver");
                 }
                 //move on to next guess
@@ -138,5 +139,9 @@ public class Guess : MonoBehaviour
             index--;
             letters.RemoveAt(letters.Count - 1);
         }
+    }
+    public string GetRandomWord()
+    {
+        return randomWord;
     }
 }
