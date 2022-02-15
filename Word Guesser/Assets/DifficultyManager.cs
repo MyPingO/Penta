@@ -14,10 +14,12 @@ public class DifficultyManager : MonoBehaviour
     public HintManager hintManager;
     public static string difficulty = "EASY";
     public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
+    public Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
     public static string yellowLetters = "";
 
     private void Start()
     {
+        for (int i = 0; i < keyBoardLetters.Length; i++) keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
         warningMessage = warningMessageGO.GetComponent<TMP_Text>();
         warningMessage.color = new Color32(255, 116, 116, 255);
         animator = warningMessageGO.GetComponent<Animator>();
@@ -84,6 +86,7 @@ public class DifficultyManager : MonoBehaviour
     //function for showing red, green, or yellow letters for a guess
     private void RevealLetters(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
     {
+        Color orange = new Color32(255,133,0,255);
         //make a string out of the TMP_Text array and use that for checks
         string guessWord = "";
         for (int i = 0; i < guess.Length; i++) guessWord += guess[i].text;
@@ -93,6 +96,7 @@ public class DifficultyManager : MonoBehaviour
             if (guessWord[i] == char.ToUpper(randomWord[i]))
             {
                 guess[i].color = Color.green;
+                ColorKeyBoard(guess[i].text[0], Color.green);
                 hintManager.RevealGreenLetter(i, guess[i].text[0]);
                 letterCountInGuess[guessWord[i]]--;
                 if (!greenLetterPositions.ContainsKey(i)) greenLetterPositions.Add(i, guessWord[i]);
@@ -104,16 +108,18 @@ public class DifficultyManager : MonoBehaviour
             // this is done to make sure only the appropriate amount of letters color gets changed
             if (randomWord.ToUpper().Contains(guessWord[i]) && letterCountInGuess[guessWord[i]] > 0 && guess[i].color != Color.green)
             {
-                guess[i].color = Color.yellow;
+                guess[i].color = orange;
+                if (keyBoardLetterColors[guess[i].text[0]] != Color.green) ColorKeyBoard(guess[i].text[0], orange);
                 letterCountInGuess[guessWord[i]]--;
                 yellowLetters += guessWord[i];
             }
         }
         for (int i = 0; i < guess.Length; i++)
         {
-            if (guess[i].color != Color.green && guess[i].color != Color.yellow)
+            if (guess[i].color != Color.green && guess[i].color != orange)
             {
                 guess[i].color = Color.red;
+                if (keyBoardLetterColors[guess[i].text[0]] != Color.green && keyBoardLetterColors[guess[i].text[0]] != orange) ColorKeyBoard(guess[i].text[0], Color.red);
             }
         }
     }
@@ -134,5 +140,16 @@ public class DifficultyManager : MonoBehaviour
     }
     public void setGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { this.greenLetterPositions = greenLetterPositions; }
     public Dictionary<int, char> getGreenLetterPositions() { return greenLetterPositions; }
+    public void ColorKeyBoard(char letter, Color color)
+    {
+        for (int i = 0; i < keyBoardLetters.Length; i++)
+        {
+            if (keyBoardLetters[i].text[0] == letter)
+            {
+                keyBoardLetters[i].color = color;
+                keyBoardLetterColors[letter] = color;
+            }
+        }
+    }
 }
 

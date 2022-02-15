@@ -36,6 +36,7 @@ public class HintManager : MonoBehaviour
                         {
                             knownLetterPositions[j].text += randomWord[i];
                             greenLetterPositions.Add(i, randomWord[j]);
+                            difficultyManager.ColorKeyBoard(randomWord[j], Color.green);
                         }
                     RemoveHint();
                     difficultyManager.setGreenLetterPositions(greenLetterPositions);
