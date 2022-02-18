@@ -1,10 +1,12 @@
-using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
 public class DifficultyManager : MonoBehaviour
 {
+    public Stats stats;
     [SerializeField]
     ValidWordChecker validWordChecker;
     private Animator animator;
@@ -19,10 +21,14 @@ public class DifficultyManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < keyBoardLetters.Length; i++) keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
-        warningMessage = warningMessageGO.GetComponent<TMP_Text>();
-        warningMessage.color = new Color32(255, 116, 116, 255);
-        animator = warningMessageGO.GetComponent<Animator>();
+        if (SceneManager.GetActiveScene().name == "MainGame")
+        {
+            for (int i = 0; i < keyBoardLetters.Length; i++) keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
+            warningMessage = warningMessageGO.GetComponent<TMP_Text>();
+            warningMessage.color = new Color32(255, 116, 116, 255);
+            animator = warningMessageGO.GetComponent<Animator>();
+            stats.SaveStats(); // to save the difficulty once the game loads
+        }
     }
     // Update is called once per frame
     public void SetDifficulty(string difficulty)

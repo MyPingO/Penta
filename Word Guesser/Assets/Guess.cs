@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class Guess : MonoBehaviour
 
 {
+    public Stats stats;
+
     public Streak streak;
 
     public TMP_Text[] firstGuess = new TMP_Text[5];

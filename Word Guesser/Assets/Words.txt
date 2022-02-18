@@ -506,7 +506,6 @@ Hence
 Hotly
 Icily
 Infra
-Intl.
 Jildi
 Jolly
 Laxly

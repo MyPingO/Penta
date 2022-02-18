@@ -5,14 +5,16 @@ using TMPro;
 
 public class HintManager : MonoBehaviour
 {
+    public Stats stats;
     public TMP_Text[] knownLetterPositions = new TMP_Text[5];
     public TMP_Text availableHints;
     public DifficultyManager difficultyManager;
     public Guess guesser;
     public string randomWord;
-    public int hintCount = 3;
+    public static int hintCount;
     private void Start()
     {
+        hintCount = stats.hintCount;
         SetAvailableHintsTMP();
         for (int i = 0; i < knownLetterPositions.Length; i++)
         {
@@ -45,10 +47,10 @@ public class HintManager : MonoBehaviour
         }
         else difficultyManager.InvalidAction("You have no hints!");
     }
-    public void AddHint() { hintCount++; SetAvailableHintsTMP(); }
-    public void RemoveHint() { hintCount--; SetAvailableHintsTMP(); }
+    public void AddHint() { hintCount++; stats.SaveStats(); SetAvailableHintsTMP(); }
+    public void RemoveHint() { hintCount--; stats.SaveStats(); SetAvailableHintsTMP(); }
     public void SetAvailableHintsTMP()
     {
-        availableHints.text = "Hints Left: " + hintCount;
+        availableHints.text = "Hints Left: " + stats.hintCount;
     }
 }

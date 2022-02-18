@@ -1575,6 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecacd0b3aeeedfb4289cd0526e7dd4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 1763314542}
   knownLetterPositions:
   - {fileID: 87407242}
   - {fileID: 545330044}
@@ -1585,7 +1586,6 @@ MonoBehaviour:
   difficultyManager: {fileID: 1509703920}
   guesser: {fileID: 429021128}
   randomWord: 
-  hintCount: 3
 --- !u!1 &224905836
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,6 +3041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd514188e731654aa5c32c84ca54aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 1763314542}
   streak: {fileID: 2077342712}
   firstGuess:
   - {fileID: 1436890653}
@@ -8358,7 +8359,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+    m_HighlightedColor: {r: 0.3339622, g: 1, b: 0.49803922, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -10479,7 +10480,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.4188679, b: 0.4188679, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -13215,6 +13216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04bc2e3bc5cfa64f8f4ab0ac792087f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 1763314542}
   validWordChecker: {fileID: 366408619}
   keyBoardLetters:
   - {fileID: 1539144401}
@@ -15129,6 +15131,54 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!1 &1763314540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763314541}
+  - component: {fileID: 1763314542}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1763314541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763314540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 840.59186, y: 374.00323, z: 5.1908264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763314542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763314540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c658384eae0a42a93e401e1e0004f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintCount: 0
+  currentStreak: 0
+  highestStreak: 0
+  difficulty: EASY
 --- !u!1 &1771753423
 GameObject:
   m_ObjectHideFlags: 0
@@ -17886,6 +17936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4052064d96e1f488c8691c9ebb7e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 1763314542}
   hintManager: {fileID: 218764597}
 --- !u!4 &2077342713
 Transform:

@@ -1,8 +1,7 @@
-Use Hints + Hard Mode Require Hints
-Buy hints
 Display Current Streak
-Display Current Hints
+Filter words list
+How to play button
+Change difficulty button
 Add Music
-Color the Keyboard
-
-//Was implementing hints last. Need to fix adding hint by updating green letter dictionary probably.
+Work on fixing jank messages
+Add if statements for things to work only if on "MainGame" scene
