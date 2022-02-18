@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Streak : MonoBehaviour
 {
     public Stats stats;
@@ -19,11 +18,9 @@ public class Streak : MonoBehaviour
     {
         currentStreak++;
         if (currentStreak > highestStreak) highestStreak = currentStreak;
-        Debug.Log("Current Streak: " + currentStreak);
         if (currentStreak % 3 == 0)
         {
             hintManager.AddHint();
-            stats.SaveStats();
         }
         stats.SaveStats();
     }

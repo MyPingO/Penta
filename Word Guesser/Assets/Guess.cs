@@ -131,6 +131,7 @@ public class Guess : MonoBehaviour
                     letters.Clear();
                 }
             }
+            stats.SaveStats();
         }
     }
     public void DeleteLastLetter()

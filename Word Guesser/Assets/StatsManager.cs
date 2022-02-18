@@ -27,7 +27,7 @@ public static class StatsManager
         }
         else
         {
-            Debug.LogError("Error: Could not find a save file, making one!");
+            Debug.LogError("Error: Could not find a save file!");
             return null;
         }
     }

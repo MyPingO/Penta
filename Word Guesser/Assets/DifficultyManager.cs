@@ -92,7 +92,7 @@ public class DifficultyManager : MonoBehaviour
     //function for showing red, green, or yellow letters for a guess
     private void RevealLetters(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
     {
-        Color orange = new Color32(255,133,0,255);
+        Color orange = new Color32(255, 200, 90, 255);
         //make a string out of the TMP_Text array and use that for checks
         string guessWord = "";
         for (int i = 0; i < guess.Length; i++) guessWord += guess[i].text;
