@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 //Link to the tutorial for this made by Brackeys: https://www.youtube.com/watch?v=XOjd_qU2Ido
 public static class StatsManager
 {
-    public static string saveFile = Application.persistentDataPath + "playerStats.stats";
+    public static string saveFile = Application.persistentDataPath + DifficultyManager.difficulty + "playerStats.stats";
     public static void SaveStats(Stats stats)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -12,7 +12,6 @@ public static class StatsManager
         PlayerStats playerStats = new PlayerStats(stats);
         formatter.Serialize(saveData, playerStats);
         saveData.Close();
-        
     }
     public static PlayerStats LoadStats()
     {
