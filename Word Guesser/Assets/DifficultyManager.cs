@@ -6,18 +6,19 @@ using TMPro;
 
 public class DifficultyManager : MonoBehaviour
 {
-    public Stats stats;
     [SerializeField]
-    ValidWordChecker validWordChecker;
+    private ValidWordChecker validWordChecker;
     private Animator animator;
     private TMP_Text warningMessage;
+    public Stats stats;
     public TMP_Text[] keyBoardLetters = new TMP_Text[26];
     public GameObject warningMessageGO;
     public HintManager hintManager;
-    public static string difficulty = "EASY";
     public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
     public Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
+    public static string difficulty = "EASY";
     public static string yellowLetters = "";
+    public static int guessLength = 5;
 
     private void Start()
     {
@@ -34,6 +35,11 @@ public class DifficultyManager : MonoBehaviour
     public void SetDifficulty(string difficulty)
     {
         DifficultyManager.difficulty = difficulty;
+        Debug.Log(DifficultyManager.difficulty);
+    }
+    public void SetGuessLength(int guessLength)
+    {
+        DifficultyManager.guessLength = guessLength;
     }
     public bool GuessChecker(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
     {
@@ -157,5 +163,6 @@ public class DifficultyManager : MonoBehaviour
             }
         }
     }
+    
 }
 

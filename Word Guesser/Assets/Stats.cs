@@ -8,6 +8,7 @@ public class Stats : MonoBehaviour
     public TMP_Text currentStreakText;
     public TMP_Text highestStreakText;
     public TMP_Text difficultyText;
+    public int guessLength = 5;
     public int hintCount = 0;
     public int currentStreak = 0;
     public int highestStreak = 0;
@@ -22,6 +23,7 @@ public class Stats : MonoBehaviour
         currentStreak = Streak.currentStreak;
         highestStreak = Streak.highestStreak;
         difficulty = DifficultyManager.difficulty;
+        guessLength = DifficultyManager.guessLength;
         StatsManager.SaveStats(this);
         LoadStats();
     }
@@ -32,6 +34,7 @@ public class Stats : MonoBehaviour
         currentStreak = playerStats.currentStreak;
         highestStreak = playerStats.highestStreak;
         difficulty = playerStats.difficulty;
+        guessLength = playerStats.guessLength;
         SetTextStats();
     }
     private void SetTextStats()

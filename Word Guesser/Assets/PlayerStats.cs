@@ -1,7 +1,7 @@
 [System.Serializable]
 public class PlayerStats
 {
-    public int hintCount, currentStreak, highestStreak;
+    public int hintCount, currentStreak, highestStreak, guessLength;
     public string difficulty;
     
     public PlayerStats (Stats stats)
@@ -10,5 +10,6 @@ public class PlayerStats
         currentStreak = stats.currentStreak;
         highestStreak = stats.highestStreak;
         difficulty = stats.difficulty;
+        guessLength = stats.guessLength;
     }
 }

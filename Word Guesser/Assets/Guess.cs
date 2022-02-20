@@ -9,19 +9,20 @@ public class Guess : MonoBehaviour
 
 {
     public Stats stats;
-
     public Streak streak;
 
-    public TMP_Text[] firstGuess = new TMP_Text[5];
-    public TMP_Text[] secondGuess = new TMP_Text[5];
-    public TMP_Text[] thirdGuess = new TMP_Text[5];
-    public TMP_Text[] fourthGuess = new TMP_Text[5];
-    public TMP_Text[] fifthGuess = new TMP_Text[5];
-    public TMP_Text[] sixthGuess = new TMP_Text[5];
-    private TMP_Text[][] guesses = new TMP_Text[6][];
-
+    public int guessLength;
     private int guessNumber = 0;
     private int index = 0;
+
+    public TMP_Text[] firstGuess;
+    public TMP_Text[] secondGuess;
+    public TMP_Text[] thirdGuess;
+    public TMP_Text[] fourthGuess;
+    public TMP_Text[] fifthGuess;
+    public TMP_Text[] sixthGuess;
+    private TMP_Text[][] guesses = new TMP_Text[6][];
+
 
     public RandomWordPicker wordPicker;
     [SerializeField]
@@ -37,6 +38,15 @@ public class Guess : MonoBehaviour
     void Start()
     {
         randomWord = wordPicker.GetRandomWord();
+
+        guessLength = DifficultyManager.guessLength;
+        firstGuess = new TMP_Text[guessLength];
+        secondGuess = new TMP_Text[guessLength];
+        thirdGuess = new TMP_Text[guessLength];
+        fourthGuess = new TMP_Text[guessLength];
+        fifthGuess = new TMP_Text[guessLength];
+        sixthGuess = new TMP_Text[guessLength];
+
         guesses[0] = firstGuess;
         guesses[1] = secondGuess;
         guesses[2] = thirdGuess;
@@ -54,7 +64,7 @@ public class Guess : MonoBehaviour
         //get input from user and make sure its a letter to add to the guess
         foreach (char c in Input.inputString)
         {
-                AddLetter(c.ToString().ToUpper());
+            AddLetter(c.ToString().ToUpper());
         }
         //every time you enter in a guess
         if (Input.GetKeyDown(KeyCode.Return))
@@ -85,7 +95,7 @@ public class Guess : MonoBehaviour
     }
     public void AddLetter(string c)
     {
-        if (char.IsLetter(c[0]) && index < 5 && guessNumber < 6)
+        if (char.IsLetter(c[0]) && index < guessLength && guessNumber < 6)
         {
             letters.Add(c[0]);
             guesses[guessNumber][index].text = c;
@@ -94,7 +104,7 @@ public class Guess : MonoBehaviour
     }
     public void ValidateGuess()
     {
-        if (letters.Count == 5 && guessNumber < 6)
+        if (letters.Count == guessLength && guessNumber < 6)
         {
             if (difficultyManager.GuessChecker(guesses[guessNumber], randomWord, letterCountInGuess))
             {

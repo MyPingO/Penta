@@ -6,7 +6,7 @@ using TMPro;
 public class HintManager : MonoBehaviour
 {
     public Stats stats;
-    public TMP_Text[] knownLetterPositions = new TMP_Text[5];
+    public TMP_Text[] knownLetterPositions = new TMP_Text[DifficultyManager.guessLength];
     public TMP_Text availableHints;
     public DifficultyManager difficultyManager;
     public Guess guesser;
