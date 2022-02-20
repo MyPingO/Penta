@@ -1,4 +1,3 @@
-Display Current Streak
 Filter words list
 How to play button
 Change difficulty button
