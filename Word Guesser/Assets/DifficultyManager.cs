@@ -16,12 +16,16 @@ public class DifficultyManager : MonoBehaviour
     public HintManager hintManager;
     public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
     public Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
+    private Dictionary<int, string> dropdownIndexToDifficulty = new Dictionary<int, string>();
     public static string difficulty = "EASY";
     public static string yellowLetters = "";
     public static int guessLength = 5;
 
     private void Start()
     {
+        dropdownIndexToDifficulty.Add(0, "EASY");
+        dropdownIndexToDifficulty.Add(1, "MEDIUM");
+        dropdownIndexToDifficulty.Add(2, "HARD");
         if (SceneManager.GetActiveScene().name == "MainGame")
         {
             for (int i = 0; i < keyBoardLetters.Length; i++) keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
@@ -32,14 +36,15 @@ public class DifficultyManager : MonoBehaviour
         }
     }
     // Update is called once per frame
-    public void SetDifficulty(string difficulty)
+    public void SetDifficulty(int dropdownIndex)
     {
-        DifficultyManager.difficulty = difficulty;
-        Debug.Log(DifficultyManager.difficulty);
+        difficulty = dropdownIndexToDifficulty[dropdownIndex];
+        Debug.Log(difficulty);
     }
     public void SetGuessLength(int guessLength)
     {
-        DifficultyManager.guessLength = guessLength;
+        DifficultyManager.guessLength = guessLength + 4;
+        Debug.Log(DifficultyManager.guessLength);
     }
     public bool GuessChecker(TMP_Text[] guess, string randomWord, Dictionary<char, int> letterCountInGuess)
     {

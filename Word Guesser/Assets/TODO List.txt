@@ -1,6 +1,8 @@
 variety of word lengths / more words lists
 How to play button
-Change difficulty button
+Change difficulty button to dropdown menu
 Add Music
 Work on fixing jank messages
 Add if statements for things to work only if on "MainGame" scene
+
+//Left off working on line 1 ^ | have to implement dynamic TextMeshPro grid arrays
