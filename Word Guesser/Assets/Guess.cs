@@ -1,20 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Guess : MonoBehaviour
 
 {
     public Stats stats;
     public Streak streak;
+    public GridBuilder gridBuilder;
 
     public int guessLength;
     private int guessNumber = 0;
     private int index = 0;
+    public int tileGap = 1;
 
+    public GameObject referenceTextTile;
     public TMP_Text[] firstGuess;
     public TMP_Text[] secondGuess;
     public TMP_Text[] thirdGuess;
@@ -40,6 +45,7 @@ public class Guess : MonoBehaviour
         randomWord = wordPicker.GetRandomWord();
 
         guessLength = DifficultyManager.guessLength;
+
         firstGuess = new TMP_Text[guessLength];
         secondGuess = new TMP_Text[guessLength];
         thirdGuess = new TMP_Text[guessLength];
@@ -54,6 +60,7 @@ public class Guess : MonoBehaviour
         guesses[4] = fifthGuess;
         guesses[5] = sixthGuess;
 
+        gridBuilder.GenerateGuessesGrid(guesses, guessLength, referenceTextTile);
         FillDictionaryWithWord(randomWord);
 
     }
@@ -78,12 +85,8 @@ public class Guess : MonoBehaviour
         }
 
     }
+    
 
-    bool AreAllTextSameColor(TMP_Text[] textArray, Color color)
-    {
-        for (int i = 0; i < textArray.Length; i++) if (textArray[i].color != color) return false;
-        return true;
-    }
     void FillDictionaryWithWord(string word)
     {
         foreach (char c in word)
@@ -92,6 +95,11 @@ public class Guess : MonoBehaviour
             if (letterCountInGuess.ContainsKey(upperC)) letterCountInGuess[upperC]++;
             else letterCountInGuess.Add(char.ToUpper(upperC), 1);
         }
+    }
+    bool AreAllTextSameColor(TMP_Text[] textArray, Color color)
+    {
+        for (int i = 0; i < textArray.Length; i++) if (textArray[i].color != color) return false;
+        return true;
     }
     public void AddLetter(string c)
     {

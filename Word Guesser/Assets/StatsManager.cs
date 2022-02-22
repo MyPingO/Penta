@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-//Link to the tutorial for this made by Brackeys: https://www.youtube.com/watch?v=XOjd_qU2Ido
+//Link to the tutorial I used to make this by Brackeys: https://www.youtube.com/watch?v=XOjd_qU2Ido
 public static class StatsManager
 {
     public static string saveFile = Application.persistentDataPath + "_" + DifficultyManager.difficulty + "_" + DifficultyManager.guessLength + "guessLength_playerStats.stats";
