@@ -1295,7 +1295,7 @@ GameObject:
   - component: {fileID: 320540897}
   - component: {fileID: 320540896}
   m_Layer: 5
-  m_Name: Start
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4130,7 +4130,7 @@ GameObject:
   - component: {fileID: 1694742372}
   - component: {fileID: 1694742371}
   m_Layer: 5
-  m_Name: StartGame
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

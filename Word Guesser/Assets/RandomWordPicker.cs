@@ -10,8 +10,8 @@ public class RandomWordPicker : MonoBehaviour
     public static string currentWord;
     void Start()
     {
-        if (DifficultyManager.difficulty != "HARD") fileName = "Words.txt";
-        else fileName = "HardWords.txt";
+        fileName = DifficultyManager.guessLength + "LetterWords.txt";
+        Debug.Log(fileName);
         filePath = Application.dataPath + "/" + fileName;
         words = File.ReadAllLines(filePath);
     }
