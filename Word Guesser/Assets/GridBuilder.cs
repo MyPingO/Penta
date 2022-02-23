@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 //Link to the tutorial I used to make this by Lost Relic Games: https://www.youtube.com/watch?v=u2_O-jQDD6s
 public class GridBuilder : MonoBehaviour

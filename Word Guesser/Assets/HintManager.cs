@@ -5,8 +5,10 @@ using TMPro;
 
 public class HintManager : MonoBehaviour
 {
+    public HintBuilder hintBuilder;
     public Stats stats;
-    public TMP_Text[] knownLetterPositions = new TMP_Text[DifficultyManager.guessLength];
+    public GameObject referenceHintObject;
+    public TMP_Text[] knownLetterPositions;
     public TMP_Text availableHints;
     public DifficultyManager difficultyManager;
     public Guess guesser;
@@ -14,6 +16,9 @@ public class HintManager : MonoBehaviour
     public static int hintCount;
     private void Start()
     {
+        knownLetterPositions = new TMP_Text[DifficultyManager.guessLength];
+        hintBuilder.GenerateHintPositions(knownLetterPositions, DifficultyManager.guessLength, referenceHintObject);
+
         hintCount = stats.hintCount;
         SetAvailableHintsTMP();
         for (int i = 0; i < knownLetterPositions.Length; i++)
@@ -53,4 +58,5 @@ public class HintManager : MonoBehaviour
     {
         availableHints.text = "Hints Left: " + stats.hintCount;
     }
+
 }

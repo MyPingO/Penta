@@ -11,7 +11,7 @@ public class RandomWordPicker : MonoBehaviour
     void Start()
     {
         fileName = DifficultyManager.guessLength + "LetterWords.txt";
-        Debug.Log(fileName);
+        Debug.Log("Loading words from: " + fileName);
         filePath = Application.dataPath + "/" + fileName;
         words = File.ReadAllLines(filePath);
     }

@@ -1,10 +1,10 @@
-dynamic hint layout
+differnt valid word lists for differnt word lengths
 How to play button
 Change difficulty button to dropdown menu
 Add Music
 Work on fixing jank messages
 Timed mode
 Add if statements for things to work only if on "MainGame" scene
-Save guess progress
+Save guess progress for a word
 
-// left off wanting to do line 1 ^
+// left off wanting to do line 1 ^ // need to make more word lists and need to check if a word is a valid word for different word lengths
