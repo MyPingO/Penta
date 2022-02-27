@@ -5,6 +5,6 @@ Add Music
 Work on fixing jank messages
 Timed mode
 Add if statements for things to work only if on "MainGame" scene
-Save guess progress for a word
+Save guess progress for a word and make sure words aren't repeated
 
 // left off wanting to do line 1 ^ // need to make more word lists and need to check if a word is a valid word for different word lengths

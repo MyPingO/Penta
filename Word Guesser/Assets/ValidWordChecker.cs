@@ -8,9 +8,10 @@ public class ValidWordChecker : MonoBehaviour
 {
     private string[] validGuesses;
     private string filePath, fileName;
-    void Awake()
+    void Start()
     {
-        fileName = "ValidWords.txt";
+        fileName = DifficultyManager.guessLength + "LetterValidWords.txt";
+        Debug.Log("ValidWordChecker chose the file: " + fileName);
         filePath = Application.dataPath + "/" + fileName;
         validGuesses = File.ReadAllLines(filePath);
     }

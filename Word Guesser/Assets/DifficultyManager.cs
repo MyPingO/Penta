@@ -17,9 +17,10 @@ public class DifficultyManager : MonoBehaviour
     public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
     public Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
     private Dictionary<int, string> dropdownIndexToDifficulty = new Dictionary<int, string>();
-    public static string difficulty = "EASY";
+    public static string difficulty = "MEDIUM";
     public static string yellowLetters = "";
     public static int guessLength = 5;
+    public static float countDown = 0;
 
     private void Start()
     {
@@ -147,6 +148,7 @@ public class DifficultyManager : MonoBehaviour
     }
     IEnumerator PlayWarningAnimation()
     {
+        //if the "warningMessage" animation is not currently playing
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("warningMessage"))
         {
             animator.SetBool("TriggerWarning", true);
@@ -168,6 +170,10 @@ public class DifficultyManager : MonoBehaviour
             }
         }
     }
-    
+
+    public void setCountDown(int dropDownIndex)
+    {
+        countDown = dropDownIndex * 30;
+    }
 }
 

@@ -135,9 +135,7 @@ public class Guess : MonoBehaviour
                 //reset the game if player ran out of guesses
                 else if (guessNumber == 5 && AreAllTextSameColor(guesses[guessNumber], Color.green) == false)
                 {
-                    RandomWordPicker.currentWord = randomWord;
-                    streak.ResetStreak();
-                    SceneManager.LoadScene("GameOver");
+                    ResetGame();   
                 }
                 //move on to next guess
                 else
@@ -164,5 +162,11 @@ public class Guess : MonoBehaviour
     public string GetRandomWord()
     {
         return randomWord;
+    }
+    public void ResetGame()
+    {
+        RandomWordPicker.currentWord = randomWord;
+        streak.ResetStreak();
+        SceneManager.LoadScene("GameOver");
     }
 }
