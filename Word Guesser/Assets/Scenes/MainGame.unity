@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guesser: {fileID: 429021128}
+  timerGameObject: {fileID: 340274317}
   countDownText: {fileID: 340274318}
   time: 0
   redColor: ff8282ff
@@ -1246,6 +1247,7 @@ GameObject:
   - component: {fileID: 340274320}
   - component: {fileID: 340274319}
   - component: {fileID: 340274318}
+  - component: {fileID: 340274321}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1370,6 +1372,26 @@ RectTransform:
   m_AnchoredPosition: {x: 4.6, y: 375.9}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &340274321
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340274317}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe1e0c2f7cc81f046b24f7566ab2dedc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &366408618
 GameObject:
   m_ObjectHideFlags: 0
