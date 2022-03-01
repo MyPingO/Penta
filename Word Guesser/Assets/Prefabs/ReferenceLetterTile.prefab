@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6449213270280112627}
   - component: {fileID: 6449213270280112639}
-  - component: {fileID: 6449213270280112636}
+  - component: {fileID: -8968363578940644158}
   - component: {fileID: 6449213270280112637}
   - component: {fileID: 6449213270280112626}
   m_Layer: 5
-  m_Name: ReferenceButtonTile
+  m_Name: ReferenceLetterTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6449213270280112624}
   m_CullTransparentMesh: 1
---- !u!114 &6449213270280112636
+--- !u!114 &-8968363578940644158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6449213270280112636}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []

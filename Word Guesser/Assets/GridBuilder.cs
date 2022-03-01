@@ -18,10 +18,7 @@ public class GridBuilder : MonoBehaviour
 
                 guesses[row][letter] = letterTile.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
 
-                float xPostition = letter * tileGap;
-                float yPostition = row * -tileGap;
-
-                letterTile.transform.position = new Vector2(xPostition, yPostition);
+                letterTile.transform.position = new Vector2(transform.position.x + (letter * tileGap), transform.position.y - (row * tileGap));
             }
         }
         Destroy(referenceTile);

@@ -20,7 +20,7 @@ public class DifficultyManager : MonoBehaviour
     public static string difficulty = "MEDIUM";
     public static string yellowLetters = "";
     public static int guessLength = 5;
-    public static float countDown = 0;
+    public static float countDown = 2;
 
     private void Start()
     {

@@ -5,6 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    public GameSceneManager gameSceneManager;
     public Guess guesser;
     private Animator animator;
     public GameObject timerGameObject;
@@ -16,8 +17,8 @@ public class Timer : MonoBehaviour
     void Start()
     {
         //adding 1 second to the timer so that the timer doesnt immediately start counting down
-        time = DifficultyManager.countDown + 1;
-        if (time == 1) timerGameObject.SetActive(false);
+        time = DifficultyManager.countDown + 0.5f;
+        if (time == 0.5f) timerGameObject.SetActive(false);
         animator = timerGameObject.GetComponent<Animator>();
     }
 
@@ -40,7 +41,11 @@ public class Timer : MonoBehaviour
 
             }
 
-            if (time <= 0) guesser.ResetGame();
+            if ((int)time == 0)
+            {
+                time = -1;
+                gameSceneManager.GameOver();//guesser.ResetGame();
+            }
         }
     }
     IEnumerator PlayWarningAnimation()
