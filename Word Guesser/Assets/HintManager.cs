@@ -33,7 +33,7 @@ public class HintManager : MonoBehaviour
     public void UseHint()
     {
         randomWord = guesser.GetRandomWord().ToUpper();
-        Dictionary<int, char> greenLetterPositions = difficultyManager.getGreenLetterPositions();
+        Dictionary<int, char> greenLetterPositions = DifficultyManager.greenLetterPositions;
         if (hintCount > 0)
         {
             for (int i = 0; i < randomWord.Length; i++) if (!greenLetterPositions.ContainsValue(randomWord[i]))

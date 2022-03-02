@@ -5,32 +5,42 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
+    public GameObject gameOverMessageContainer;
+    public GameObject congratulationsMessageContainer;
     public Streak streak;
     public Guess guesser;
     public Timer timer;
-    public GameObject gameOverGameObject;
-    private Animator animator;
+    public AnimatorManager animatorManager;
 
-    public void Start()
-    {
-        animator = gameOverGameObject.GetComponent<Animator>();
-    }
     public void LoadMainGame()
     {
         SceneManager.LoadScene("MainGame");
     }
-    public void GameOver()
+    public void WindowPopUp(bool playerWon)
     {
-        //play the game over animation
+        if (playerWon)
+        {
+            gameOverMessageContainer.SetActive(false);
+            congratulationsMessageContainer.SetActive(true);
+        }
+        else
+        {
+            gameOverMessageContainer.SetActive(true);
+            congratulationsMessageContainer.SetActive(false);
+        }
         Time.timeScale = 0;
-        animator.SetBool("GameOverTrigger", true);
+        animatorManager.windowPopUpAnimator.SetBool("WindowPopUp", true);
     }
-    public void PlayAgain()
+    public void PlayAgain() //resets the game
     {
         Time.timeScale = 1;
-        animator.SetBool("GameOverTrigger", false);
-        Debug.Log("GameOver reversed");
+        animatorManager.windowPopUpAnimator.SetBool("WindowPopUp", false);
         ResetGame();
+    }
+    public void Continue() //resets the board only (this is done in Guess script)
+    {
+        Time.timeScale = 0;
+        animatorManager.windowPopUpAnimator.SetBool("WindowPopUp", false);
     }
 
     public void ResetGame()

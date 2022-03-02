@@ -11,13 +11,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -477401781491471558}
-    m_Position: {x: 300, y: 30, z: 0}
+    m_Position: {x: 300, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1411498521969030408}
-    m_Position: {x: 300, y: 120, z: 0}
+    m_Position: {x: 300, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6203848812610783561}
-    m_Position: {x: 550, y: 30, z: 0}
+    m_Position: {x: 600, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -25,7 +25,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 920, y: 290, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1411498521969030408}
 --- !u!1101 &-8374970531004329755
@@ -62,7 +62,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: GameOverTrigger
+    m_ConditionEvent: WindowPopUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -477401781491471558}
@@ -87,7 +87,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: GameOverTrigger
+    m_ConditionEvent: WindowPopUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -477401781491471558}
@@ -110,7 +110,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WindowPopUpAnimation
+  m_Name: WindowPopUp
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -136,10 +136,10 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameOverPopUp
+  m_Name: WindowPopUp
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: GameOverTrigger
+  - m_Name: WindowPopUp
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -194,7 +194,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: GameOverTrigger
+    m_ConditionEvent: WindowPopUp
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6203848812610783561}

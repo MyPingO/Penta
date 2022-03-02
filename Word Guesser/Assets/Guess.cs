@@ -28,7 +28,7 @@ public class Guess : MonoBehaviour
     public TMP_Text[] sixthGuess;
     private TMP_Text[][] guesses = new TMP_Text[6][];
 
-
+    public GameSceneManager gameSceneManager;
     public RandomWordPicker wordPicker;
     [SerializeField]
     private DifficultyManager difficultyManager;
@@ -119,6 +119,7 @@ public class Guess : MonoBehaviour
                 //if player guessed the word
                 if (AreAllTextSameColor(guesses[guessNumber], Color.green))
                 {
+                    gameSceneManager.WindowPopUp(true);
                     //reset text tiles and other stats
                     streak.AddStreak();
                     ResetBoard();
@@ -126,6 +127,7 @@ public class Guess : MonoBehaviour
                 //reset the game if player ran out of guesses
                 else if (guessNumber == 5 && AreAllTextSameColor(guesses[guessNumber], Color.green) == false)
                 {
+                    gameSceneManager.WindowPopUp(false);
                     ResetGame();   
                 }
                 //move on to next guess

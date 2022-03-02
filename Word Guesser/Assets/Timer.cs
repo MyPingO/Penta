@@ -6,8 +6,8 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public GameSceneManager gameSceneManager;
+    public  AnimatorManager animatorManager;
     public Guess guesser;
-    private Animator animator;
     public GameObject timerGameObject;
     private float minutes;
     private float seconds;
@@ -19,7 +19,6 @@ public class Timer : MonoBehaviour
         //adding 1 second to the timer so that the timer doesnt immediately start counting down
         time = DifficultyManager.countDown + 0.5f;
         if (time == 0.5f) timerGameObject.SetActive(false);
-        animator = timerGameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame  
@@ -37,25 +36,25 @@ public class Timer : MonoBehaviour
             if (time < 15 && countDownText.color != Color.red)
             {
                 countDownText.color = new Color32(redColor[0], redColor[1], redColor[2], redColor[3]);
-                StartCoroutine("PlayWarningAnimation");
+                StartCoroutine("PlayLowTimeAnimation");
 
             }
 
             if (time < 0)
             {
                 time = 0;
-                gameSceneManager.GameOver();//guesser.ResetGame();
+                gameSceneManager.WindowPopUp(false);//guesser.ResetGame();
             }
         }
     }
-    IEnumerator PlayWarningAnimation()
+    IEnumerator PlayLowTimeAnimation()
     {
         //if the "warningMessage" animation is not currently playing
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("TimeRunningOut"))
+        if (!animatorManager.timerAnimator.GetCurrentAnimatorStateInfo(0).IsName("TimeRunningOut"))
         {
-            animator.SetBool("timerWarning", true);
+            animatorManager.timerAnimator.SetBool("timerWarning", true);
             yield return new WaitForSeconds(15);
-            animator.SetBool("timerWarning", false);
+            animatorManager.timerAnimator.SetBool("timerWarning", false);
         }
     }
     public void ResetTimer()

@@ -6,13 +6,12 @@ using TMPro;
 
 public class DifficultyManager : MonoBehaviour
 {
-    [SerializeField]
-    private ValidWordChecker validWordChecker;
-    private Animator animator;
-    private TMP_Text warningMessage;
+    public AnimatorManager animatorManager;
+    public ValidWordChecker validWordChecker;
     public Stats stats;
     public TMP_Text[] keyBoardLetters = new TMP_Text[26];
     public GameObject warningMessageGO;
+    private TMP_Text warningMessage;
     public HintManager hintManager;
     public static Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
     public static Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
@@ -32,7 +31,6 @@ public class DifficultyManager : MonoBehaviour
             for (int i = 0; i < keyBoardLetters.Length; i++) keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
             warningMessage = warningMessageGO.GetComponent<TMP_Text>();
             warningMessage.color = new Color32(255, 116, 116, 255);
-            animator = warningMessageGO.GetComponent<Animator>();
             stats.SaveStats(); // to save the difficulty once the game loads
         }
     }
@@ -149,12 +147,12 @@ public class DifficultyManager : MonoBehaviour
     IEnumerator PlayWarningAnimation()
     {
         //if the "warningMessage" animation is not currently playing
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("warningMessage"))
+        if (!animatorManager.warningMessageAnimator.GetCurrentAnimatorStateInfo(0).IsName("warningMessage"))
         {
-            animator.SetBool("TriggerWarning", true);
+            animatorManager.warningMessageAnimator.SetBool("TriggerWarning", true);
             yield return new WaitForSeconds(2.7f);
             warningMessage.text = "";
-            animator.SetBool("TriggerWarning", false); 
+            animatorManager.warningMessageAnimator.SetBool("TriggerWarning", false); 
         }
     }
     public void setGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { DifficultyManager.greenLetterPositions = greenLetterPositions; }
