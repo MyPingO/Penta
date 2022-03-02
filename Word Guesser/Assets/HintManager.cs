@@ -8,7 +8,7 @@ public class HintManager : MonoBehaviour
     public HintBuilder hintBuilder;
     public Stats stats;
     public GameObject referenceHintObject;
-    public TMP_Text[] knownLetterPositions;
+    public static TMP_Text[] knownLetterPositions;
     public TMP_Text availableHints;
     public DifficultyManager difficultyManager;
     public Guess guesser;

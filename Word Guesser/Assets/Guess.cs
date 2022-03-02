@@ -121,16 +121,7 @@ public class Guess : MonoBehaviour
                 {
                     //reset text tiles and other stats
                     streak.AddStreak();
-                    for (int i = 0; i < guesses.Length; i++)
-                        for (int j = 0; j < guesses[i].Length; j++)
-                        {
-                            guesses[i][j].text = "";
-                            guesses[i][j].color = Color.black;
-                        }
-                    guessNumber = 0; index = 0; letters.Clear(); letterCountInGuess.Clear(); randomWord = wordPicker.GetRandomWord(); difficultyManager.greenLetterPositions.Clear(); DifficultyManager.yellowLetters = "";
-                    FillDictionaryWithWord(randomWord);
-                    SceneManager.LoadScene("Congrats");
-
+                    ResetBoard();
                 }
                 //reset the game if player ran out of guesses
                 else if (guessNumber == 5 && AreAllTextSameColor(guesses[guessNumber], Color.green) == false)
@@ -167,6 +158,32 @@ public class Guess : MonoBehaviour
     {
         RandomWordPicker.currentWord = randomWord;
         streak.ResetStreak();
-        SceneManager.LoadScene("GameOver");
+        ResetBoard();
+    }
+    public void ResetBoard()
+    {
+        index = 0; 
+        guessNumber = 0; 
+        letters.Clear(); 
+        letterCountInGuess.Clear(); 
+        randomWord = wordPicker.GetRandomWord();
+        FillDictionaryWithWord(randomWord);
+        DifficultyManager.yellowLetters = "";
+        DifficultyManager.greenLetterPositions.Clear();
+        //clear guesses[][]
+        for (int i = 0; i < guesses.Length; i++)
+        {
+            for (int j = 0; j < guesses[i].Length; j++)
+            {
+                guesses[i][j].text = "";
+                guesses[i][j].color = Color.black;
+            }
+        }
+        //clear hint/known letters
+        for (int i = 0; i < guessLength; i++) HintManager.knownLetterPositions[i].text = "";
+        //clear keyboard colors
+        for (int i = 0; i < 26; i++) difficultyManager.keyBoardLetters[i].color = Color.black; 
+
+        stats.SaveStats();
     }
 }

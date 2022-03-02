@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
+    public Streak streak;
+    public Guess guesser;
+    public Timer timer;
     public GameObject gameOverGameObject;
-    public Animator animator;
+    private Animator animator;
 
     public void Start()
     {
@@ -26,5 +30,13 @@ public class GameSceneManager : MonoBehaviour
         Time.timeScale = 1;
         animator.SetBool("GameOverTrigger", false);
         Debug.Log("GameOver reversed");
+        ResetGame();
+    }
+
+    public void ResetGame()
+    {
+        streak.ResetStreak();
+        guesser.ResetGame();
+        timer.ResetTimer();
     }
 }

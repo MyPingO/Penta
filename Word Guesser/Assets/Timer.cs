@@ -41,9 +41,9 @@ public class Timer : MonoBehaviour
 
             }
 
-            if ((int)time == 0)
+            if (time < 0)
             {
-                time = -1;
+                time = 0;
                 gameSceneManager.GameOver();//guesser.ResetGame();
             }
         }
@@ -57,5 +57,9 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(15);
             animator.SetBool("timerWarning", false);
         }
+    }
+    public void ResetTimer()
+    {
+        if (timerGameObject.activeSelf) time = DifficultyManager.countDown + 0.5f;
     }
 }

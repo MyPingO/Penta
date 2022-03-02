@@ -14,13 +14,13 @@ public class DifficultyManager : MonoBehaviour
     public TMP_Text[] keyBoardLetters = new TMP_Text[26];
     public GameObject warningMessageGO;
     public HintManager hintManager;
-    public Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
-    public Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
+    public static Dictionary<int, char> greenLetterPositions = new Dictionary<int, char>();
+    public static Dictionary<char, Color32> keyBoardLetterColors = new Dictionary<char, Color32>();
     private Dictionary<int, string> dropdownIndexToDifficulty = new Dictionary<int, string>();
     public static string difficulty = "MEDIUM";
     public static string yellowLetters = "";
     public static int guessLength = 5;
-    public static float countDown = 2;
+    public static float countDown = 0;
 
     private void Start()
     {
@@ -157,7 +157,7 @@ public class DifficultyManager : MonoBehaviour
             animator.SetBool("TriggerWarning", false); 
         }
     }
-    public void setGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { this.greenLetterPositions = greenLetterPositions; }
+    public void setGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { DifficultyManager.greenLetterPositions = greenLetterPositions; }
     public Dictionary<int, char> getGreenLetterPositions() { return greenLetterPositions; }
     public void ColorKeyBoard(char letter, Color color)
     {
