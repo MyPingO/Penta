@@ -1,10 +1,8 @@
-Game over screen pop up
+Add a lot of stats to save
 differnt valid word lists for differnt word lengths
 How to play button
 Change difficulty button to dropdown menu
 Add Music
-Work on fixing jank messages
 Add if statements for things to work only if on "MainGame" scene
-Save guess progress and time progress
 
 // left off wanting to do line 1 ^

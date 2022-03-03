@@ -46,7 +46,7 @@ public class HintManager : MonoBehaviour
                             difficultyManager.ColorKeyBoard(randomWord[j], Color.green);
                         }
                     RemoveHint();
-                    difficultyManager.setGreenLetterPositions(greenLetterPositions);
+                    difficultyManager.SetGreenLetterPositions(greenLetterPositions);
                     return;
                 }
         }

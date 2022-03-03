@@ -5,7 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public GameSceneManager gameSceneManager;
+    public GamePopUpManager gameSceneManager;
     public  AnimatorManager animatorManager;
     public Guess guesser;
     public GameObject timerGameObject;

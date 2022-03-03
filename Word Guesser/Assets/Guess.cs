@@ -28,7 +28,7 @@ public class Guess : MonoBehaviour
     public TMP_Text[] sixthGuess;
     private TMP_Text[][] guesses = new TMP_Text[6][];
 
-    public GameSceneManager gameSceneManager;
+    public GamePopUpManager gameSceneManager;
     public RandomWordPicker wordPicker;
     [SerializeField]
     private DifficultyManager difficultyManager;
@@ -183,8 +183,8 @@ public class Guess : MonoBehaviour
         }
         //clear hint/known letters
         for (int i = 0; i < guessLength; i++) HintManager.knownLetterPositions[i].text = "";
-        //clear keyboard colors
-        for (int i = 0; i < 26; i++) difficultyManager.keyBoardLetters[i].color = Color.black; 
+        //clear keyboard colors and values
+        difficultyManager.ResetKeyBoard();
 
         stats.SaveStats();
     }

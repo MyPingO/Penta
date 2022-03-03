@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameSceneManager : MonoBehaviour
+using TMPro;
+public class GamePopUpManager : MonoBehaviour
 {
     public GameObject gameOverMessageContainer;
     public GameObject congratulationsMessageContainer;
@@ -12,6 +13,7 @@ public class GameSceneManager : MonoBehaviour
     public Timer timer;
     public AnimatorManager animatorManager;
 
+    public TMP_Text guessWord;
     public void LoadMainGame()
     {
         SceneManager.LoadScene("MainGame");
@@ -29,6 +31,7 @@ public class GameSceneManager : MonoBehaviour
             congratulationsMessageContainer.SetActive(false);
         }
         Time.timeScale = 0;
+        guessWord.text = guesser.GetRandomWord();
         animatorManager.windowPopUpAnimator.SetBool("WindowPopUp", true);
     }
     public void PlayAgain() //resets the game
@@ -39,7 +42,7 @@ public class GameSceneManager : MonoBehaviour
     }
     public void Continue() //resets the board only (this is done in Guess script)
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         animatorManager.windowPopUpAnimator.SetBool("WindowPopUp", false);
     }
 

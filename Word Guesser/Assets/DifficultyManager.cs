@@ -34,7 +34,10 @@ public class DifficultyManager : MonoBehaviour
             stats.SaveStats(); // to save the difficulty once the game loads
         }
     }
-    // Update is called once per frame
+    public void SetCountDown(int dropDownIndex)
+    {
+        countDown = dropDownIndex * 30;
+    }
     public void SetDifficulty(int dropdownIndex)
     {
         difficulty = dropdownIndexToDifficulty[dropdownIndex];
@@ -42,6 +45,7 @@ public class DifficultyManager : MonoBehaviour
     }
     public void SetGuessLength(int guessLength)
     {
+        //adding 4 because the highest number that will get passed is 3 (range is 0-3) which will make it go from 4-7
         DifficultyManager.guessLength = guessLength + 4;
         Debug.Log(DifficultyManager.guessLength);
     }
@@ -62,7 +66,7 @@ public class DifficultyManager : MonoBehaviour
             {
                 InvalidAction("Invalid Word!");
                 Debug.Log("Invalid Word!");
-                return false;            
+                return false;
             }
             return true;
         }
@@ -152,10 +156,10 @@ public class DifficultyManager : MonoBehaviour
             animatorManager.warningMessageAnimator.SetBool("TriggerWarning", true);
             yield return new WaitForSeconds(2.7f);
             warningMessage.text = "";
-            animatorManager.warningMessageAnimator.SetBool("TriggerWarning", false); 
+            animatorManager.warningMessageAnimator.SetBool("TriggerWarning", false);
         }
     }
-    public void setGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { DifficultyManager.greenLetterPositions = greenLetterPositions; }
+    public void SetGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { DifficultyManager.greenLetterPositions = greenLetterPositions; }
     public Dictionary<int, char> getGreenLetterPositions() { return greenLetterPositions; }
     public void ColorKeyBoard(char letter, Color color)
     {
@@ -168,10 +172,14 @@ public class DifficultyManager : MonoBehaviour
             }
         }
     }
-
-    public void setCountDown(int dropDownIndex)
+    public void ResetKeyBoard()
     {
-        countDown = dropDownIndex * 30;
+        keyBoardLetterColors.Clear();
+        for (int i = 0; i < keyBoardLetters.Length; i++)
+        {
+            keyBoardLetters[i].color = Color.black;
+            keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
+        }
     }
 }
 
