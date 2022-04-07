@@ -50,4 +50,4 @@ public class Stats : MonoBehaviour
         else if (difficulty == "MEDIUM") difficultyText.color = lightOrange;
         else difficultyText.color = lightRed;
     }
-}// need to save greeletterpositions, yellow letter positions, keyoard colors, the board (guesses[][]), the hints, the random word, index, guess#, the letter count in the guess, Guess.letters and time. Most of these come from Guess class
+}// need to save greenletterpositions, yellow letter positions, keyoard colors, the board (guesses[][]), the hints, the random word, index, guess#, the letter count in the guess, Guess.letters and ?time?. Most of these come from Guess class

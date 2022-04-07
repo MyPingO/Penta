@@ -26,6 +26,7 @@ public class DifficultyManager : MonoBehaviour
         dropdownIndexToDifficulty.Add(0, "EASY");
         dropdownIndexToDifficulty.Add(1, "MEDIUM");
         dropdownIndexToDifficulty.Add(2, "HARD");
+
         if (SceneManager.GetActiveScene().name == "MainGame")
         {
             for (int i = 0; i < keyBoardLetters.Length; i++) keyBoardLetterColors.Add(keyBoardLetters[i].text[0], Color.black);
@@ -159,7 +160,9 @@ public class DifficultyManager : MonoBehaviour
             animatorManager.warningMessageAnimator.SetBool("TriggerWarning", false);
         }
     }
-    public void SetGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { DifficultyManager.greenLetterPositions = greenLetterPositions; }
+    public void SetGreenLetterPositions(Dictionary<int, char> greenLetterPositions) { 
+        DifficultyManager.greenLetterPositions = greenLetterPositions; 
+    }
     public Dictionary<int, char> getGreenLetterPositions() { return greenLetterPositions; }
     public void ColorKeyBoard(char letter, Color color)
     {

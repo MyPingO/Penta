@@ -8,6 +8,7 @@ public class HintBuilder : MonoBehaviour
     public int hintLetterGap;
     public void GenerateHintPositions(TMP_Text[] knowLetterPositions, int guessLength, GameObject referenceHintObject)
     {
+        hintLetterGap = Screen.width / 28;
         GameObject referenceHintLetter = Instantiate(referenceHintObject);
         for (int i = 0; i < guessLength; i++)
         {

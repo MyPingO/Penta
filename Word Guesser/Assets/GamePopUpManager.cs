@@ -14,6 +14,13 @@ public class GamePopUpManager : MonoBehaviour
     public AnimatorManager animatorManager;
 
     public TMP_Text guessWord;
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
+    }
     public void LoadMainGame()
     {
         SceneManager.LoadScene("MainGame");
@@ -42,6 +49,7 @@ public class GamePopUpManager : MonoBehaviour
     }
     public void Continue() //resets the board only (this is done in Guess script)
     {
+        timer.ResetTimer();
         Time.timeScale = 1;
         animatorManager.windowPopUpAnimator.SetBool("WindowPopUp", false);
     }
